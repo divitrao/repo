@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NOTA</title>
+    <link rel="stylesheet" href="divitcss.css">
+    <!-- <script src="divitjs.js"></script> -->
+</head>
+
+<body>
+
+    <!-- <script data-ad-client="ca-pub-4646166502321746" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script> -->
+   
+    <div class="container">
+        <div class="container-box">
+            <button onclick="calculator()"  class="button1"> click me </button>
+        </div>
+
+        <div>   
+            <button  onclick="reset()" class="reset"> RESET </button>
+        </div>
+
+        <div>
+            <input type="text" placeholder="Enter your age" id="age" class="ageenter">
+        </div>
+        
+
+    </div>
+
+    <div class="containers" >   
+        <div id="answer"></div>
+
+    </div>
+
+
+<div class="container2">
+        <h2>generate cat </h2>
+        <button class="generator" id="generatecat" onclick="generatecat()" >
+            generte cat 
+        </button>
+        <button class="generator" id="removecat" onclick="removecat()"> REMOVE  </button>
+
+        <div class="flex-container" id="flex-container">
+            
+
+        </div>
+
+
+</div>
+
+<div>
+    <p class="gameheader">STONE PAPER SCISSOR</p>
+    <div class="game" id="flex-box-div">
+    <div class="stone"><img src="rock/stone.jpg"  id="stone" onclick="game(this)"> </div>
+    <div class="paper" > <img src="rock/paper.jpg" id="paper" onclick="game(this)"> </div>
+    <div class="scissor" > <img src="rock/scissor.jpg" id="scissor" onclick="game(this)"> </div>
+    </div>  
+</div>
+
+<div  class="buts" id="playagainbutton" onclick="playagain()"  >
+
+</div>
+
+<div>
+    <form>
+        <select class="selection" name="selection" id="changebutton" onchange="changecolor(this)">
+            <option value="red">red</option>
+            <option value="green">Green</option>
+            <option value="random">Random</option>
+            <option value="reset">reset </option>
+    
+        </select>
+    </form>
+    <button class="experiment">1</button>
+    <button class="experiment">2</button>
+    <button class="experiment">3</button>
+    <button class="experiment">4</button>
+
+</div>
+
+<div class="container-5">
+    <div class="heading">
+        <h2>Black jack </h2>
+    </div>
+    <div id='letsPlay'>
+        <h3>LETS PLAY !</h3>
+    </div>
+<div class="flex-box-row-1">
+    <!-- <img src='rock/green.jpg'> -->
+    <div id="your-box">
+        <h2> YOUR SCORE: <span id="your-result"> 0 </span></h2>
+
+    </div>
+    <div id="comp-box">
+        <h2> COMP SCORE : <span id="comp-result"> 0 </span> </h2>
+    </div>
+</div>
+    <div class="flex-box-row-2">
+        <div class="input-button">
+            <button class="HIT" id="HITS"> <h3>HIT</h3> </button>
+            <button class="STAND" id="STANDs"><h3> STAND  </h3> </button>
+            <button class="DEAL" id="DEALS"> <h3> DEAL </h3></button>
+
+        </div>
+
+        <div>
+            <table style="border: 2px solid black;">
+            <tr>
+                <th> WIN </th>
+                <th> LOOSE</th>
+                <th> DRAW </th>
+            </tr>
+
+            <tr>
+                <td> <span id="wins">0</span>  </td>
+                <td> <span id="loose">0</span>  </td>
+                <td> <span id="draw">0</span>  </td>
+            </tr>
+
+            </table>
+        </div>
+
+    </div>
+</div>
+
+
+
+<script>
+let blackjackgame = {
+
+    'you' :{'scorespan':'#your-result', 'div':'#your-box','score':0},
+    'comp' :{'scorespan':'#comp-result', 'div':'#comp-box','score':0},
+    'cards' : ['2','3','4','5','6','7','8','9','10','K','Q','J','A'],
+    'card_score':{'2':2,'3':3,'4':4,'5':5,'6':6,'7':7,'8':8,'9':9,'10':10,'K':10,'Q':10,'J':10,'A':[1,11]},
+    'wins': 0,
+    'lossed' :0,
+    'draw': 0,
+    'stand': false,
+    'turnOver': false,
+    'yourTurn': false
+}
+
+const YOU = blackjackgame['you']
+const COMP = blackjackgame['comp']
+
+document.querySelector("#HITS").addEventListener("click",hit);
+document.querySelector("#STANDs").addEventListener("click",dealerLogic);
+
+
+const hitsound = new Audio('nava/sounds/swish.m4a');
+const winsound = new Audio('nava/sounds/cash.mp3');
+const loosesound = new Audio('nava/sounds/aww.mp3');
+
+function hit(){
+
+    if (blackjackgame['stand']==false){
+        blackjackgame['yourTurn']=true;
+
+    let received_randomCard = cardrando()
+    showcard(received_randomCard,YOU)   
+    card_score_evaluation(received_randomCard,YOU)
+    card_score_summation_show(YOU)
+    console.log('hit is ',YOU['score'])
+}
+}
+
+   function showcard(received_randomCard,activeplayer){
+//    alert('you pressed hit');
+
+if(activeplayer['score']<=21){
+let cardImage = document.createElement('img');
+cardImage.src = `nava/images/${received_randomCard}.png`; 
+cardImage.style.width = '70px';
+cardImage.style.padding= '10px';
+document.querySelector(activeplayer['div']).appendChild(cardImage);
+hitsound.play()
+}
+    }
+
+
+
+document.querySelector('#DEALS').addEventListener("click",dealit);
+
+function dealit(){
+    // showresult(compute_winner())
+
+    if (blackjackgame['turnOver']==true){
+
+    blackjackgame['stand']=false;
+    blackjackgame['yourTurn']=false;
+    let youImage = document.querySelector('#your-box').querySelectorAll('img');
+    let youImage_dealer_side = document.querySelector('#comp-box').querySelectorAll('img');
+    for(i=0;i<youImage.length;i++){
+
+        youImage[i].remove();
+    }
+
+    for(i=0;i<youImage_dealer_side.length;i++){
+
+        youImage_dealer_side[i].remove();
+    }
+
+    YOU['score']=0;
+    COMP['score']=0;
+    document.querySelector("#your-result").textContent = 0
+    document.querySelector("#your-result").style.color = 'white'
+    document.querySelector("#comp-result").textContent = 0
+    document.querySelector("#comp-result").style.color = 'white'
+
+    document.querySelector('#letsPlay').textContent=  'LETS PLAY !'
+    document.querySelector('#letsPlay').style.color=  'black'
+}
+}
+function cardrando(){
+
+    let randomnuber = Math.floor(Math.random()*13);
+    return blackjackgame['cards'][randomnuber]
+}
+
+function card_score_evaluation(received_randomCard,activeplayer){
+
+    if(received_randomCard==='A'){
+
+        if(activeplayer['score'] + blackjackgame['card_score'][received_randomCard][1]<=21){
+            activeplayer['score']+= blackjackgame['card_score'][received_randomCard][1];
+
+        }
+
+        else{
+
+            activeplayer['score']+= blackjackgame['card_score'][received_randomCard][0];
+        }
+    }
+
+    else{
+
+    activeplayer['score']+= blackjackgame['card_score'][received_randomCard]
+    }
+
+}
+
+function card_score_summation_show(activeplayer){
+
+    if(activeplayer['score']>21){
+
+        document.querySelector(activeplayer['scorespan']).textContent = 'BUST!';
+        document.querySelector(activeplayer['scorespan']).style.color = 'red';
+    }
+
+    else{
+
+    document.querySelector(activeplayer['scorespan']).textContent = activeplayer['score'];
+}
+}
+
+function sleep(ms){
+    return new Promise(resolve => setTimeout(resolve,ms))
+}
+
+ async function dealerLogic(){
+
+    if (blackjackgame['yourTurn']==true){
+    blackjackgame['stand']=true
+
+    while(COMP['score']<16 && blackjackgame['stand']==true){
+
+    
+
+    
+
+    let dealer_random_card = cardrando();
+
+    showcard(dealer_random_card,COMP);
+    card_score_evaluation(dealer_random_card,COMP)
+    card_score_summation_show(COMP)
+    console.log('COMP IS : ',COMP['score']);
+    if(COMP['score']>15){
+
+        blackjackgame['turnOver']=true;
+
+        showresult(compute_winner())
+    }
+    
+    console.log(blackjackgame['wins'])
+    console.log(blackjackgame['lossed'])
+    console.log(blackjackgame['draw'])
+
+    await sleep(1000);
+
+}
+}
+ }
+
+function compute_winner(){
+
+    let winners;
+    console.log('inside winnr YOU : ', YOU['score'])
+    console.log('inside winnr COMP : ', COMP['score'])
+    if(YOU['score']<=21){   
+        if((YOU['score'] > COMP['score']) || (COMP['score']>21)){
+
+            winners = YOU;
+            // console.log('you won');
+            blackjackgame['wins']++;
+            
+            
+        }
+
+        else if (YOU['score'] < COMP['score']){
+
+            winners = COMP;
+            // console.log('you lost');
+             blackjackgame['lossed']++;
+            
+        }
+
+        else if( YOU['score'] == COMP['score']){
+
+            // console.log('You drew');
+             blackjackgame['draw']++;
+           
+        }
+    }
+
+    else if(YOU['score'] > 21 && COMP['score'] <= 21){
+
+        // console.log('you lost');
+        winners = COMP;
+         blackjackgame['lossed']++;
+        
+        
+    }
+
+    else if (YOU['score'] > 21 && COMP['score'] > 21){
+
+        // console.log('You drew');
+        blackjackgame['draw']++;
+        
+    }
+
+    console.log('winner is : ',winners);
+    return winners;
+}
+
+function showresult(winners){
+    // console.log('yetlo mater' ,winners)
+
+    if(blackjackgame['turnOver']==true){
+
+        let message,messagecolor;
+        if(winners == YOU){
+            document.querySelector('#wins').textContent=  blackjackgame['wins']
+            message = 'YOU WON';
+            messagecolor = ' green ';
+            winsound.play()
+        }
+
+        else if(winners==COMP){
+            document.querySelector('#loose').textContent= blackjackgame['lossed']
+            message = 'YOU LOST';
+            messagecolor = ' red ';
+            loosesound.play()
+
+        }
+
+        else{
+            document.querySelector('#draw').textContent= blackjackgame['draw']
+            message = 'YOU DREW';
+            messagecolor = ' black ';
+            
+        }
+
+        document.querySelector('#letsPlay').textContent = message;
+        document.querySelector('#letsPlay').style.color = messagecolor;
+
+}
+}
+
+
+</script>
+<script src="divitjs.js"></script>
+</body>
+</html>
