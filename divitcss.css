@@ -1,0 +1,228 @@
+.container{
+
+    display: flex;
+    justify-content: center;
+}
+
+.button1{
+
+    background-color: aqua;
+    padding: 20px;
+    margin: 10px;
+    border: 5px;
+    border-radius: 50%;
+}
+
+.reset{
+
+    background-color: blueviolet;
+    padding: 20px;
+    margin: 10px;
+    border: 5px;
+    border-radius: 50%;
+}
+
+.answer{
+
+    margin: 40px;
+}
+.containers{
+
+    display: flex;
+    justify-content: center;
+    margin-top: 100px;
+}
+
+.container2{
+
+    text-align: center;
+    border: 1px solid red;
+}
+
+.generator{
+
+    border-radius: 10px;
+    background-color:yellow;
+    width: 70px;
+    /* color: greenyellow; */
+}
+
+.flex-container, .flex-box-row-1{
+
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    
+    
+}
+
+.flex-container img:hover{
+
+    /* padding: 20px; */
+    /* box-shadow: 0px 10px 50px rgba(0,0 ,0,0.4) ; */
+    box-shadow: 0px 10px 50px rgba(37,50,233,0.6) ;
+}
+
+/* .flex-container img:hover{
+
+    box-shadow: 0px 10px 50px rgba(red,green ,aqua,0.4) ;
+} */
+
+.game{
+
+    display: flex;
+    justify-content: center;
+}
+
+.gameheader{
+
+    justify-content: center;
+    margin-left: 50%;
+    
+}
+
+.stone  img{
+
+    width: 300px;
+    height: 300px;
+    margin: 20px;
+}
+
+.paper img{
+
+    width: 300px;
+    height: 300px;
+    margin: 20px;
+}
+
+.scissor img{
+
+    width: 300px;
+    height: 300px;
+    margin: 20px;
+}
+.stone img:hover{
+
+    /* padding: 20px; */
+    /* box-shadow: 0px 10px 50px rgba(0,0 ,0,0.4) ; */
+    box-shadow: 0px 10px 50px rgba(37,50,233,0.6) ; }
+.paper img:hover{
+
+        /* padding: 20px; */
+        /* box-shadow: 0px 10px 50px rgba(0,0 ,0,0.4) ; */
+        box-shadow: 0px 10px 50px rgba(37,50,233,0.6) ; }   
+        
+.scissor img:hover{
+
+            /* padding: 20px; */
+            /* box-shadow: 0px 10px 50px rgba(0,0 ,0,0.4) ; */
+            box-shadow: 0px 10px 50px rgba(37,50,233,0.6) ; }        
+
+.buts{
+     
+    text-align: center;
+    margin-left: 48%;
+    /* background-color: orange; */
+    width: 70px;
+    height:70px;
+    padding: 10px;
+    margin-bottom: 10px;
+    
+    
+}
+
+/* button{
+
+   background-color: orange;
+} */
+
+.selection{
+
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    
+}
+
+.experiment{
+
+    background-color: brown;
+    margin-left: 15%;
+    padding: 20px;
+    /* display: flex;
+    flex-direction: row;
+    justify-content: center; */
+    
+}
+
+.red{
+
+    background-color: red;
+}
+
+.green{
+
+    background-color: green;
+}
+
+.heading{
+
+    text-align: center;
+    margin-top: 40px;
+}
+
+.container-5{
+
+    width: 75%;
+    margin: 0 auto;
+    text-align: center;
+    border: 1px solid black;
+    margin-top: 10px;
+}
+
+table,th{
+
+    border: 1px solid black;
+    padding: 10px;
+    margin-top: 20px;
+    margin-left: 40%;
+}
+
+.flex-box-row-1 div{
+    
+    height: 350px;
+    width: 350px;
+    border: 1px solid black;
+    flex: 1;
+
+
+}
+
+.flex-box-row-1{
+
+    background-image: url("rock/green.jpg");
+    /* background: white; */
+    color: white;
+    justify-content: center;
+    padding: 10px;
+}
+
+.HIT{
+
+    background-color: coral;
+    border-radius: 5px;
+    padding :10px;
+}
+.STAND{
+
+    background-color: red;
+    border-radius: 5px;
+    padding :10px;
+}
+.DEAL{
+
+    background-color:yellowgreen;
+    border-radius: 5px;
+    padding :10px;
+}
